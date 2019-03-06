@@ -28,10 +28,31 @@ namespace GameStore
             showcase.Add(new Game("Hat in Time", 20, "How to mom", "4D-Platformer"));
         }
 
+        public bool IsValidGame(int n)
+        {
+            if (n < showcase.Count && n >= 0)
+                return true;
+            else
+                return false;
+        }
+
+        public void PrintShowcase()
+        {
+            foreach(Game g in showcase)
+            {
+                Console.WriteLine("\t ["+ showcase.IndexOf(g) + "]" + g.name + ", " + g.price);
+            }
+        }
+
         public void RemoveGame(Game game)
         {
             if(showcase.Contains(game))
             showcase.Remove(game); 
+        }
+
+        public void Sell(int game, User user)
+        {
+            Sell(showcase[game], user);
         }
 
         public void Sell(Game game, User user)
@@ -65,6 +86,8 @@ namespace GameStore
             wallet = walletFunds;
         }
     }
+
+
 
     class Game
     {
